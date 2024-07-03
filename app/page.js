@@ -1,112 +1,138 @@
-import Image from "next/image";
+// pages/index.js
+'use client'
+import React, { useState, useEffect, useRef } from "react";
+import HTMLFlipBook from "react-pageflip";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const flipBookRef = useRef();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({
+        width: 0.8 * window.innerWidth / 2,
+        height: 0.8 * window.innerHeight,
+      });
+    };
+
+    // Set initial dimensions
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const goToPage = (pageNumber) => {
+    if (flipBookRef.current) {
+      flipBookRef.current.pageFlip().flip(pageNumber);
+    }
+  };
+
+  function MyBook(props) {
+    return (
+      <HTMLFlipBook
+        ref={flipBookRef}
+        width={dimensions.width}
+        height={dimensions.height}
+        className="flipbook"
+      >
+        <div className="cover"></div>
+        <div className="page">
+          <h1 className="pageHeader">How To:</h1>
+          <p className="pageContent">
+            <ol>
+              <li>Click on the navigation 'bookmarks' below to flip to the desired page.</li>
+              <li>Click on the page you would like to flip.</li>
+            </ol>
+          </p>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
+        <div className="page">
+          <h1 className="pageHeader">About Me</h1>
+          <p className="pageContent">
+            Hi, my name is Marcin Knara (Mar-chin Ck-nara)!<br /><br />
+            I'm a current software engineer that loves to dabble in:
+            <ul className="aboutMeList">
+              <li>Web Development</li>
+              <li>Mobile App Development</li>
+              <li>Photography & Videography</li>
+              <li>Writing</li>
+              <li>Armchair Philosophizing</li>
+              <li>Personal Finance</li>
+              <li>And Playing Video Games</li>
+            </ul>
           </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+        </div>
+        <div className="page">
+          <h1 className="pageHeader">Projects</h1>
+          <p className="pageContent">
+            Currently lacking the stellar projects resume, but there are some in the works:<br /><br />
+            <ul className="aboutMeList">
+              <li>Fineas</li>
+              <p>Fineas is my first attempt at creating a financial services web application. Taking inspiration by the now decomissioned financial budgeting app Mint, I am hoping to create a budgeting tool that can help anyone track their finances with the help of Machine Learning.</p>
+            </ul>
           </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
+        </div>
+        <div className="page">
+          <h1 className="pageHeader">Work Experience</h1>
+          <p className="pageContent">This is the work experience section. It'll probably dispaly my resume or something.</p>
+        </div>
+        <div className="page">
+          <h1 className="pageHeader">Contact Info</h1>
+          <p className="pageContent">
+            You can reach me or checkout my other profiles at:<br /><br />
+            <ul className="contactList">
+              <li>
+                <a href="mailto:marcinknara@gmail.com">
+                  <FontAwesomeIcon icon={faEnvelope} /> marcinknara@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/marcinknara" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/marcinknara" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={faGithub} /> GitHub
+                </a>
+              </li>
+            </ul>
           </p>
-        </a>
+        </div>
+      </HTMLFlipBook>
+    );
+  }
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+  return (
+    <main className="main-container">
+      {dimensions.width > 0 && dimensions.height > 0 && <MyBook />}
+      <div className="navigation-buttons">
+        <button onClick={() => goToPage(0)}>
+          <FontAwesomeIcon icon={faBookmark} />
+          <span>Cover</span>
+        </button>
+        <button onClick={() => goToPage(2)}>
+          <FontAwesomeIcon icon={faBookmark} />
+          <span>About Me</span>
+        </button>
+        <button onClick={() => goToPage(3)}>
+          <FontAwesomeIcon icon={faBookmark} />
+          <span>Projects</span>
+        </button>
+        <button onClick={() => goToPage(4)}>
+          <FontAwesomeIcon icon={faBookmark} />
+          <span>Work Experience</span>
+        </button>
+        <button onClick={() => goToPage(5)}>
+          <FontAwesomeIcon icon={faBookmark} />
+          <span>Contact</span>
+        </button>
       </div>
     </main>
   );
