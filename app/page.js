@@ -1,4 +1,3 @@
-// pages/index.js
 'use client'
 import React, { useState, useEffect, useRef } from "react";
 import HTMLFlipBook from "react-pageflip";
