@@ -46,7 +46,7 @@ export default function Home() {
           <h1 className="pageHeader">How To:</h1>
           <p className="pageContent">
             <ol>
-              <li>Click on the navigation 'bookmarks' below to flip to the desired page.</li>
+              <li>Click on the navigation &#39;bookmarks&#39; below to flip to the desired page.</li>
               <li>Click on the page you would like to flip.</li>
             </ol>
           </p>
@@ -55,7 +55,7 @@ export default function Home() {
           <h1 className="pageHeader">About Me</h1>
           <p className="pageContent">
             Hi, my name is Marcin Knara (Mar-chin Ck-nara)!<br /><br />
-            I'm a current software engineer that loves to dabble in:
+            I&#39;m a current software engineer that loves to dabble in:
             <ul className="aboutMeList">
               <li>Web Development</li>
               <li>Mobile App Development</li>
@@ -79,7 +79,7 @@ export default function Home() {
         </div>
         <div className="page">
           <h1 className="pageHeader">Work Experience</h1>
-          <p className="pageContent">This is the work experience section. It'll probably dispaly my resume or something.</p>
+          <p className="pageContent">This is the work experience section. It&#39;ll probably dispaly my resume or something.</p>
         </div>
         <div className="page">
           <h1 className="pageHeader">Contact Info</h1>
