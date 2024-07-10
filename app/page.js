@@ -1,138 +1,115 @@
 'use client'
-import React, { useState, useEffect, useRef } from "react";
-import HTMLFlipBook from "react-pageflip";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import React, { useEffect } from 'react';
+import Vara from 'vara';
 
 export default function Home() {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const flipBookRef = useRef();
-
   useEffect(() => {
-    const handleResize = () => {
-      setDimensions({
-        width: 0.8 * window.innerWidth / 2,
-        height: 0.8 * window.innerHeight,
+    const fontSize = window.screen.width < 700 ? 32 : window.screen.width < 1200 ? 56 : 72;
+    const vara = new Vara(
+      "#container",
+      "https://cdn.jsdelivr.net/npm/vara@1.4.0/fonts/Satisfy/SatisfySL.json",
+      [
+        {
+          text: "My name is Marcin Knara",
+          y: 150,
+          fromCurrentPosition: { y: false },
+          duration: 3000
+        },
+        {
+          text: "hello Harry Potter, my name is Tom Riddle",
+          y: 150,
+          fromCurrentPosition: { y: false },
+          delay: 3000,
+          duration: 4000
+        },
+        {
+          text: "Do you know anything about the Chamber of Secrets ?",
+          y: 150,
+          fromCurrentPosition: { y: false },
+          delay: 3000,
+          duration: 4500
+        },
+        {
+          text: "Yes",
+          y: 150,
+          fromCurrentPosition: { y: false },
+          delay: 3000,
+          duration: 1000
+        },
+        {
+          text: "Can you tell me ?",
+          y: 150,
+          fromCurrentPosition: { y: false },
+          delay: 3000,
+          duration: 4000
+        },
+        {
+          text: "No",
+          y: 150,
+          fromCurrentPosition: { y: false },
+          delay: 3000,
+          duration: 1000
+        },
+        {
+          text: "But I can show you",
+          y: 150,
+          fromCurrentPosition: { y: false },
+          delay: 3000,
+          duration: 4000
+        },
+        {
+          text: "Let me take you back fifty years ago",
+          y: 150,
+          fromCurrentPosition: { y: false },
+          delay: 3000,
+          duration: 4000
+        },
+        {
+          text: "Hi there,",
+          y: 150,
+          id: "no_erase",
+          delay: 2000
+        },
+        {
+          text:
+            "This is Vara.js, a javascript library that can create realistic text drawing animations.",
+          y: 50,
+          x: 50,
+          duration: 4000
+        },
+        {
+          text: "Check out my Github page",
+          color: "#421e82",
+          id: "github"
+        }
+      ],
+      {
+        strokeWidth: 2,
+        color: "#523c33",
+        fontSize: fontSize,
+        textAlign: "center"
+      }
+    );
+    vara.ready(function () {
+      var erase = true;
+      vara.animationEnd(function (i, o) {
+        if (i === "no_erase") erase = false;
+        if (erase) {
+          o.container.style.transition = "opacity 1s 1s";
+          o.container.style.opacity = 0;
+        }
       });
-    };
-
-    // Set initial dimensions
-    handleResize();
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
+      vara.get("github").container.style.cursor = "pointer";
+      vara.get("github").container.onclick = function () {
+        document.querySelector("#link").click();
+      };
+    });
   }, []);
 
-  const goToPage = (pageNumber) => {
-    if (flipBookRef.current) {
-      flipBookRef.current.pageFlip().flip(pageNumber);
-    }
-  };
-
-  function MyBook(props) {
-    return (
-      <HTMLFlipBook
-        ref={flipBookRef}
-        width={dimensions.width}
-        height={dimensions.height}
-        className="flipbook"
-      >
-        <div className="cover"></div>
-        <div className="page">
-          <h1 className="pageHeader">How To:</h1>
-          <p className="pageContent">
-            <ol>
-              <li>Click on the navigation &#39;bookmarks&#39; below to flip to the desired page.</li>
-              <li>Click on the page you would like to flip.</li>
-            </ol>
-          </p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">About Me</h1>
-          <p className="pageContent">
-            Hi, my name is Marcin Knara (Mar-chin Ck-nara)!<br /><br />
-            I&#39;m a current software engineer that loves to dabble in:
-            <ul className="aboutMeList">
-              <li>Web Development</li>
-              <li>Mobile App Development</li>
-              <li>Photography & Videography</li>
-              <li>Writing</li>
-              <li>Armchair Philosophizing</li>
-              <li>Personal Finance</li>
-              <li>And Playing Video Games</li>
-            </ul>
-          </p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">Projects</h1>
-          <p className="pageContent">
-            Currently lacking the stellar projects resume, but there are some in the works:<br /><br />
-            <ul className="aboutMeList">
-              <li>Fineas</li>
-              <p>Fineas is my first attempt at creating a financial services web application. Taking inspiration by the now decomissioned financial budgeting app Mint, I am hoping to create a budgeting tool that can help anyone track their finances with the help of Machine Learning.</p>
-            </ul>
-          </p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">Work Experience</h1>
-          <p className="pageContent">This is the work experience section. It&#39;ll probably dispaly my resume or something.</p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">Contact Info</h1>
-          <p className="pageContent">
-            You can reach me or checkout my other profiles at:<br /><br />
-            <ul className="contactList">
-              <li>
-                <a href="mailto:marcinknara@gmail.com">
-                  <FontAwesomeIcon icon={faEnvelope} /> marcinknara@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/marcinknara" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/marcinknara" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faGithub} /> GitHub
-                </a>
-              </li>
-            </ul>
-          </p>
-        </div>
-      </HTMLFlipBook>
-    );
-  }
-
   return (
-    <main className="main-container">
-      {dimensions.width > 0 && dimensions.height > 0 && <MyBook />}
-      <div className="navigation-buttons">
-        <button onClick={() => goToPage(0)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>Cover</span>
-        </button>
-        <button onClick={() => goToPage(2)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>About Me</span>
-        </button>
-        <button onClick={() => goToPage(3)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>Projects</span>
-        </button>
-        <button onClick={() => goToPage(4)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>Work Experience</span>
-        </button>
-        <button onClick={() => goToPage(5)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>Contact</span>
-        </button>
-      </div>
-    </main>
+    <div>
+      <div id="container"></div>
+      <a className="hidden" id="link" href="https://github.com/akzhy/Vara" target="_blank"></a>
+    </div>
   );
 }
