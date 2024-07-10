@@ -1,13 +1,15 @@
+// pages/page.js
 'use client'
 import React, { useState, useEffect, useRef } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faEnvelope, faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export default function Home() {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const flipBookRef = useRef();
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,6 +35,10 @@ export default function Home() {
     }
   };
 
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
+
   function MyBook(props) {
     return (
       <HTMLFlipBook
@@ -41,13 +47,15 @@ export default function Home() {
         height={dimensions.height}
         className="flipbook"
       >
-        <div className="cover"></div>
+        <div className="cover">
+          {/* Image by rawpixel.com on Freepik */}
+        </div>
         <div className="page">
           <h1 className="pageHeader">How To:</h1>
           <p className="pageContent">
             <ol>
+              <li>Click on the left or right page you would like to flip.</li>
               <li>Click on the navigation &#39;bookmarks&#39; below to flip to the desired page.</li>
-              <li>Click on the page you would like to flip.</li>
             </ol>
           </p>
         </div>
@@ -78,11 +86,7 @@ export default function Home() {
           </p>
         </div>
         <div className="page">
-          <h1 className="pageHeader">Work Experience</h1>
-          <p className="pageContent">This is the work experience section. It&#39;ll probably dispaly my resume or something.</p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">Contact Info</h1>
+          <h1 className="pageHeader">Contact & Social</h1>
           <p className="pageContent">
             You can reach me or checkout my other profiles at:<br /><br />
             <ul className="contactList">
@@ -103,6 +107,23 @@ export default function Home() {
               </li>
             </ul>
           </p>
+        </div>
+        <div className="page">
+          <h1 className="pageHeader">Resume</h1>
+          <div className="pageContent">
+            <div className="pdf-container">
+              <iframe
+                className="resume-pdf"
+                src="/MarcinKnaraResume.pdf"
+                onClick={toggleFullscreen}
+                allowFullScreen
+              ></iframe>
+              <button className="fullscreen-button" onClick={toggleFullscreen}>
+                <FontAwesomeIcon icon={isFullscreen ? faCompress : faExpand} />
+                {isFullscreen ? 'Close Fullscreen' : 'Expand'}
+              </button>
+            </div>
+          </div>
         </div>
       </HTMLFlipBook>
     );
@@ -126,11 +147,11 @@ export default function Home() {
         </button>
         <button onClick={() => goToPage(4)}>
           <FontAwesomeIcon icon={faBookmark} />
-          <span>Work Experience</span>
+          <span>Contact & Social</span>
         </button>
         <button onClick={() => goToPage(5)}>
           <FontAwesomeIcon icon={faBookmark} />
-          <span>Contact</span>
+          <span>Resume</span>
         </button>
       </div>
     </main>
