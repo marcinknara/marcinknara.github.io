@@ -21,7 +21,7 @@ export default function Home() {
       const fontSize = calculateFontSize();
 
       const vara = new Vara(
-        "#container",
+        "#title",
         "https://cdn.jsdelivr.net/npm/vara@1.4.0/fonts/Satisfy/SatisfySL.json",
         [
           {
@@ -54,21 +54,36 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ textAlign: 'center', paddingTop: '20px' }}>
-      <div id="container"></div>
-      {isVaraAnimationComplete && (
-        <div id="subheader" style={{ fontSize: `${typewriterFontSize/2}px`, color: '#523c33', marginTop: '10px' }}>
-          <Typewriter
-            words={['[Pronounced Mar-chin Ck-nara]','Welcome to my site!', 'I dabble in many things.', 'Scroll and take a look around!']}
-            loop={1}
-            cursor
-            cursorStyle='_'
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1000}
-          />
-        </div>
-      )}
+    <div id='container'>
+      <div id='section1' style={{ position: 'relative', textAlign: 'center', paddingTop: '20px' }}>
+        <div id="title"></div>
+        <img src="/MarcinCouchWebsite.png" alt="Description of image" style={{ marginTop: '20px', maxWidth: '80%', height: 'auto' }} />
+        {isVaraAnimationComplete && (
+          <div id="subheader" style={{ fontSize: `${typewriterFontSize / 2}px`, color: '#523c33', marginTop: '90px', position: 'absolute', top: '100px', width: '100%', textAlign: 'center' }}>
+            <Typewriter
+              words={['[Pronounced Mar-chin Ck-nara]', 'Welcome to my site!', 'I dabble in many things.', 'Scroll and take a look around!']}
+              loop={1}
+              cursor
+              cursorStyle='_'
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+          </div>
+        )}
+      </div>
+      <div id='section2' className="section">
+        <h1>About Me</h1>
+      </div>
+      <div id='section2' className="section">
+        <h1>Experience</h1>
+      </div>
+      <div id='section2' className="section">
+        <h1>Projects</h1>
+      </div>
+      <div id='section2' className="section">
+        <h1>Hobbies</h1>
+      </div>
     </div>
   );
 }
