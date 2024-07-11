@@ -1,115 +1,74 @@
+// pages/page.js
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Vara from 'vara';
+import { Typewriter } from 'react-simple-typewriter';
 
 export default function Home() {
+  const isVaraInitialized = useRef(false);
+  const [isVaraAnimationComplete, setIsVaraAnimationComplete] = useState(false);
+  const [typewriterFontSize, setTypewriterFontSize] = useState(48);
+
   useEffect(() => {
-    const fontSize = window.screen.width < 700 ? 32 : window.screen.width < 1200 ? 56 : 72;
-    const vara = new Vara(
-      "#container",
-      "https://cdn.jsdelivr.net/npm/vara@1.4.0/fonts/Satisfy/SatisfySL.json",
-      [
-        {
-          text: "My name is Marcin Knara",
-          y: 150,
-          fromCurrentPosition: { y: false },
-          duration: 3000
-        },
-        {
-          text: "hello Harry Potter, my name is Tom Riddle",
-          y: 150,
-          fromCurrentPosition: { y: false },
-          delay: 3000,
-          duration: 4000
-        },
-        {
-          text: "Do you know anything about the Chamber of Secrets ?",
-          y: 150,
-          fromCurrentPosition: { y: false },
-          delay: 3000,
-          duration: 4500
-        },
-        {
-          text: "Yes",
-          y: 150,
-          fromCurrentPosition: { y: false },
-          delay: 3000,
-          duration: 1000
-        },
-        {
-          text: "Can you tell me ?",
-          y: 150,
-          fromCurrentPosition: { y: false },
-          delay: 3000,
-          duration: 4000
-        },
-        {
-          text: "No",
-          y: 150,
-          fromCurrentPosition: { y: false },
-          delay: 3000,
-          duration: 1000
-        },
-        {
-          text: "But I can show you",
-          y: 150,
-          fromCurrentPosition: { y: false },
-          delay: 3000,
-          duration: 4000
-        },
-        {
-          text: "Let me take you back fifty years ago",
-          y: 150,
-          fromCurrentPosition: { y: false },
-          delay: 3000,
-          duration: 4000
-        },
-        {
-          text: "Hi there,",
-          y: 150,
-          id: "no_erase",
-          delay: 2000
-        },
-        {
-          text:
-            "This is Vara.js, a javascript library that can create realistic text drawing animations.",
-          y: 50,
-          x: 50,
-          duration: 4000
-        },
-        {
-          text: "Check out my Github page",
-          color: "#421e82",
-          id: "github"
-        }
-      ],
-      {
-        strokeWidth: 2,
-        color: "#523c33",
-        fontSize: fontSize,
-        textAlign: "center"
-      }
-    );
-    vara.ready(function () {
-      var erase = true;
-      vara.animationEnd(function (i, o) {
-        if (i === "no_erase") erase = false;
-        if (erase) {
-          o.container.style.transition = "opacity 1s 1s";
-          o.container.style.opacity = 0;
-        }
-      });
-      vara.get("github").container.style.cursor = "pointer";
-      vara.get("github").container.onclick = function () {
-        document.querySelector("#link").click();
+    if (!isVaraInitialized.current) {
+      isVaraInitialized.current = true;
+      const calculateFontSize = () => {
+        const screenFontSize = window.screen.width < 700 ? 32 : window.screen.width < 1200 ? 56 : 72;
+        setTypewriterFontSize(screenFontSize);
+        return screenFontSize;
       };
-    });
+
+      const fontSize = calculateFontSize();
+
+      const vara = new Vara(
+        "#container",
+        "https://cdn.jsdelivr.net/npm/vara@1.4.0/fonts/Satisfy/SatisfySL.json",
+        [
+          {
+            text: "My name is Marcin Knara",
+            y: 50, // Adjusted the y position to reduce space
+            fromCurrentPosition: { y: false },
+            duration: 3000
+          },
+        ],
+        {
+          strokeWidth: 2,
+          color: "#523c33",
+          fontSize: fontSize,
+          textAlign: "center"
+        }
+      );
+
+      vara.ready(function () {
+        vara.animationEnd(function (i, o) {
+          setIsVaraAnimationComplete(true);
+        });
+      });
+
+      // Add event listener to update font size on resize
+      window.addEventListener('resize', calculateFontSize);
+
+      // Cleanup event listener on component unmount
+      return () => window.removeEventListener('resize', calculateFontSize);
+    }
   }, []);
 
   return (
-    <div>
+    <div style={{ textAlign: 'center', paddingTop: '20px' }}>
       <div id="container"></div>
-      <a className="hidden" id="link" href="https://github.com/akzhy/Vara" target="_blank"></a>
+      {isVaraAnimationComplete && (
+        <div id="subheader" style={{ fontSize: `${typewriterFontSize/2}px`, color: '#523c33', marginTop: '10px' }}>
+          <Typewriter
+            words={['[Pronounced Mar-chin Ck-nara]','Welcome to my site!', 'I dabble in many things.', 'Scroll and take a look around!']}
+            loop={1}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+        </div>
+      )}
     </div>
   );
 }

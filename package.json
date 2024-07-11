@@ -18,6 +18,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-pageflip": "^2.0.3",
+    "react-simple-typewriter": "^5.0.1",
     "vara": "^1.4.1"
   },
   "devDependencies": {
