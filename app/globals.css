@@ -63,3 +63,19 @@ h1 {
   text-align: center;
   padding-top: 20px;
 }
+
+.flipbook .pageLeft {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: url('/leftParchPage.png') no-repeat center center;
+  background-size: cover;
+}
+
+.flipbook .pageRight {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: url('/rightParchPage.png') no-repeat center center;
+  background-size: cover;
+}
