@@ -1,5 +1,8 @@
 /* Basic Reset */
-html, body, div, h1 {
+html,
+body,
+div,
+h1 {
   margin: 0;
   padding: 0;
   border: 0;
@@ -46,7 +49,11 @@ h1 {
   scroll-snap-type: y mandatory;
 }
 
-#section1 {
+#section1,
+#section2,
+#section3,
+#section4,
+#section5 {
   height: 100vh;
   width: 100vw;
   scroll-snap-align: start;
@@ -55,27 +62,57 @@ h1 {
   padding-top: 20px;
 }
 
-#section2 {
-  height: 100vh;
-  width: 100vw;
-  scroll-snap-align: start;
+#horizontalContainer {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  height: 100%;
+  align-items: center;
+  /* Center items vertically */
+}
+
+#horizontalContainer .react-flip-card {
+  scroll-snap-align: center;
   position: relative;
+  display: inline-block;
+  height: 400px;
+  width: 400px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  /* Add margin between cards */
+}
+
+.flipCardExample {
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background: linear-gradient(#00b3ad, rgba(0, 255, 40, 0.41));
+  color: white;
+  font-weight: bold;
   text-align: center;
-  padding-top: 20px;
 }
 
-.flipbook .pageLeft {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background: url('/leftParchPage.png') no-repeat center center;
-  background-size: cover;
+.clickable {
+  cursor: pointer;
 }
 
-.flipbook .pageRight {
-  height: 100%;
+.resizeBasedOnParent {
   width: 100%;
-  overflow: hidden;
-  background: url('/rightParchPage.png') no-repeat center center;
-  background-size: cover;
+  height: 100%;
+}
+
+.selectable {
+  user-select: initial
+}
+
+.width200px {
+  width: 200px;
+}
+
+.widthHeightAuto {
+height: auto;
+width: auto;
+}
+
+.transitionDuration2s {
+transition-duration: 2s;
 }

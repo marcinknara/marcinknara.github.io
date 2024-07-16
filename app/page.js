@@ -3,12 +3,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Vara from 'vara';
 import { Typewriter } from 'react-simple-typewriter';
-import HTMLFlipBook from "react-pageflip";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
-import MyBook from './components/MyBook'; // Import MyBook component
-
 import ReactFlipCard from 'reactjs-flip-card';
 
 export default function Home() {
@@ -16,11 +10,31 @@ export default function Home() {
   const [isVaraAnimationComplete, setIsVaraAnimationComplete] = useState(false);
   const [typewriterFontSize, setTypewriterFontSize] = useState(48);
 
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const flipBookRef = useRef();
-
   const styles = {
-    card: { background: 'blue', color: 'white', borderRadius: 20, },
+    container: { padding: 20 },
+    subTitle: {
+      fontSize: "1.5rem", fontWeight: "bold",
+      marginBottom: 10, textAlign: "center"
+    },
+    sectionExample: {
+      background: "#f1f1f1",
+      margin: 20,
+      padding: 20,
+      borderRadius: 20
+    },
+    textAlignCenter: { textAlign: "center" },
+    fontStyleItalic: { fontStyle: "italic" },
+    flex: { display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 10 },
+    card: { background: '#00b3ad', color: 'white', borderRadius: 20, },
+    marginTop10: { padding: 10 },
+    marginBottom10: { marginBottom: 10 },
+    padding10: { padding: 10 },
+    padding20: { padding: 20 },
+    fontSize1rem: { fontSize: "1rem" },
+    size200: { height: 200, width: 200 },
+    fontWeightBold: { fontWeight: "bold" },
+    backgroundOrange: { background: "orange" },
+    centeredContent: { display: 'flex', justifyContent: 'center', alignItems: 'center' }
   }
 
   useEffect(() => {
@@ -65,33 +79,16 @@ export default function Home() {
       // Cleanup event listener on component unmount
       return () => window.removeEventListener('resize', calculateFontSize);
     }
-
-    const handleResize = () => {
-      setDimensions({
-        width: 0.8 * window.innerWidth / 2,
-        height: 0.8 * window.innerHeight,
-      });
-    };
-    // Set initial dimensions
-    handleResize();
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-
   }, []);
 
-  const goToPage = (pageNumber) => {
-    if (flipBookRef.current) {
-      flipBookRef.current.pageFlip().flip(pageNumber);
-    }
+  const flipCardStyle = {
+    frontStyle: { background: 'blue', color: 'white', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+    backStyle: { background: 'blue', color: 'white', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   };
 
   return (
     <div id='container'>
-      <div id='section1' style={{ position: 'relative', textAlign: 'center', paddingTop: '20px' }}>
+      <div id='section1'>
         <div id="title"></div>
         <img src="/MarcinCouchWebsite.png" alt="Description of image" style={{ marginTop: '20px', maxWidth: '80%', height: 'auto' }} />
         {isVaraAnimationComplete && (
@@ -108,25 +105,47 @@ export default function Home() {
           </div>
         )}
       </div>
-      <div id='section2' className="section" style={{ textAlign: 'center', paddingTop: '20px' }}>
-        {/* <h1>About Me</h1> */}
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <ReactFlipCard
-            frontStyle={styles.card}
-            backStyle={styles.card}
-            frontComponent={<div>Hover me!</div>}
-            backComponent={<div>Back!</div>}
-          />
-          <MyBook />
+      <div id='section2' className="section">
+        <h1>About Me</h1>
+        <div id='horizontalContainer'>
+          <div style={{ ...styles.flex, ...styles.textAlignCenter }}>
+            <div style={styles.size200}>
+              <ReactFlipCard
+                containerCss={'resizeBasedOnParent'}
+                frontStyle={styles.card}
+                backStyle={styles.card}
+                frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
+                backComponent={<div style={styles.padding10}>Back!</div>}
+              />
+            </div>
+            <div style={{ width: 100, height: 200 }}>
+              <ReactFlipCard
+                containerCss={'resizeBasedOnParent'}
+                frontStyle={styles.card}
+                backStyle={styles.card}
+                frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
+                backComponent={<div style={styles.padding10}>Back!</div>}
+              />
+            </div>
+            <div style={{ width: 200, height: 100 }}>
+              <ReactFlipCard
+                containerCss={'resizeBasedOnParent'}
+                frontStyle={styles.card}
+                backStyle={styles.card}
+                frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
+                backComponent={<div style={styles.padding10}>Back!</div>}
+              />
+            </div>
+          </div>
         </div>
       </div>
-      <div id='section3' className="section" style={{ textAlign: 'center', paddingTop: '20px' }}>
+      <div id='section3' className="section">
         <h1>Experience</h1>
       </div>
-      <div id='section4' className="section" style={{ textAlign: 'center', paddingTop: '20px' }}>
+      <div id='section4' className="section">
         <h1>Projects</h1>
       </div>
-      <div id='section5' className="section" style={{ textAlign: 'center', paddingTop: '20px' }}>
+      <div id='section5' className="section">
         <h1>Hobbies</h1>
       </div>
     </div>
