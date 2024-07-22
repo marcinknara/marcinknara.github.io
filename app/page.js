@@ -11,30 +11,9 @@ export default function Home() {
   const [typewriterFontSize, setTypewriterFontSize] = useState(48);
 
   const styles = {
-    container: { padding: 20 },
-    subTitle: {
-      fontSize: "1.5rem", fontWeight: "bold",
-      marginBottom: 10, textAlign: "center"
-    },
-    sectionExample: {
-      background: "#f1f1f1",
-      margin: 20,
-      padding: 20,
-      borderRadius: 20
-    },
-    textAlignCenter: { textAlign: "center" },
-    fontStyleItalic: { fontStyle: "italic" },
-    flex: { display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 10 },
     card: { background: '#00b3ad', color: 'white', borderRadius: 20, },
-    marginTop10: { padding: 10 },
-    marginBottom10: { marginBottom: 10 },
     padding10: { padding: 10 },
-    padding20: { padding: 20 },
-    fontSize1rem: { fontSize: "1rem" },
-    size200: { height: 200, width: 200 },
-    fontWeightBold: { fontWeight: "bold" },
-    backgroundOrange: { background: "orange" },
-    centeredContent: { display: 'flex', justifyContent: 'center', alignItems: 'center' }
+    size200: { height: 400, width: 400, display: 'inline-block', padding: 20 },
   }
 
   useEffect(() => {
@@ -106,36 +85,48 @@ export default function Home() {
         )}
       </div>
       <div id='section2' className="section">
-        <h1>About Me</h1>
+        <h1>Projects</h1>
         <div id='horizontalContainer'>
-          <div style={{ ...styles.flex, ...styles.textAlignCenter }}>
-            <div style={styles.size200}>
-              <ReactFlipCard
-                containerCss={'resizeBasedOnParent'}
-                frontStyle={styles.card}
-                backStyle={styles.card}
-                frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
-                backComponent={<div style={styles.padding10}>Back!</div>}
-              />
-            </div>
-            <div style={{ width: 100, height: 200 }}>
-              <ReactFlipCard
-                containerCss={'resizeBasedOnParent'}
-                frontStyle={styles.card}
-                backStyle={styles.card}
-                frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
-                backComponent={<div style={styles.padding10}>Back!</div>}
-              />
-            </div>
-            <div style={{ width: 200, height: 100 }}>
-              <ReactFlipCard
-                containerCss={'resizeBasedOnParent'}
-                frontStyle={styles.card}
-                backStyle={styles.card}
-                frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
-                backComponent={<div style={styles.padding10}>Back!</div>}
-              />
-            </div>
+          <div style={{...styles.size200}}>
+            <ReactFlipCard
+              containerCss={'resizeBasedOnParent'}
+              flipTrigger={"onClick"}
+              frontStyle={styles.card}
+              backStyle={styles.card}
+              frontComponent={<div style={styles.padding10}>Fineas</div>}
+              backComponent={<div style={styles.padding10}>Fineas is my first attempt at creating a financial services web application. Taking inspiration from the now decomissioned financial budgeting app Mint, I am hoping to create a budgeting tool that can help anyone track their finances with the help of Machine Learning.
+              </div>}
+            />
+          </div>
+          <div style={styles.size200}>
+            <ReactFlipCard
+              containerCss={'resizeBasedOnParent'}
+              flipTrigger={"onClick"}
+              frontStyle={styles.card}
+              backStyle={styles.card}
+              frontComponent={<div style={styles.padding10}>Saige</div>}
+              backComponent={<div style={styles.padding10}>My first time working with a startup!</div>}
+            />
+          </div>
+          <div style={styles.size200}>
+            <ReactFlipCard
+              containerCss={'resizeBasedOnParent'}
+              flipTrigger={"onClick"}
+              frontStyle={styles.card}
+              backStyle={styles.card}
+              frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
+              backComponent={<div style={styles.padding10}>Back!</div>}
+            />
+          </div>
+          <div style={styles.size200}>
+            <ReactFlipCard
+              containerCss={'resizeBasedOnParent'}
+              flipTrigger={"onClick"}
+              frontStyle={styles.card}
+              backStyle={styles.card}
+              frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
+              backComponent={<div style={styles.padding10}>Back!</div>}
+            />
           </div>
         </div>
       </div>
@@ -143,7 +134,7 @@ export default function Home() {
         <h1>Experience</h1>
       </div>
       <div id='section4' className="section">
-        <h1>Projects</h1>
+        <h1>About Me</h1>
       </div>
       <div id='section5' className="section">
         <h1>Hobbies</h1>
