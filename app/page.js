@@ -1,138 +1,156 @@
+// pages/page.js
 'use client'
-import React, { useState, useEffect, useRef } from "react";
-import HTMLFlipBook from "react-pageflip";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import React, { useEffect, useRef, useState } from 'react';
+import Vara from 'vara';
+import { Typewriter } from 'react-simple-typewriter';
+import ReactFlipCard from 'reactjs-flip-card';
 
 export default function Home() {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const flipBookRef = useRef();
+  const isVaraInitialized = useRef(false);
+  const [isVaraAnimationComplete, setIsVaraAnimationComplete] = useState(false);
+  const [typewriterFontSize, setTypewriterFontSize] = useState(48);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setDimensions({
-        width: 0.8 * window.innerWidth / 2,
-        height: 0.8 * window.innerHeight,
-      });
-    };
-
-    // Set initial dimensions
-    handleResize();
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const goToPage = (pageNumber) => {
-    if (flipBookRef.current) {
-      flipBookRef.current.pageFlip().flip(pageNumber);
-    }
-  };
-
-  function MyBook(props) {
-    return (
-      <HTMLFlipBook
-        ref={flipBookRef}
-        width={dimensions.width}
-        height={dimensions.height}
-        className="flipbook"
-      >
-        <div className="cover"></div>
-        <div className="page">
-          <h1 className="pageHeader">How To:</h1>
-          <p className="pageContent">
-            <ol>
-              <li>Click on the navigation &#39;bookmarks&#39; below to flip to the desired page.</li>
-              <li>Click on the page you would like to flip.</li>
-            </ol>
-          </p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">About Me</h1>
-          <p className="pageContent">
-            Hi, my name is Marcin Knara (Mar-chin Ck-nara)!<br /><br />
-            I&#39;m a current software engineer that loves to dabble in:
-            <ul className="aboutMeList">
-              <li>Web Development</li>
-              <li>Mobile App Development</li>
-              <li>Photography & Videography</li>
-              <li>Writing</li>
-              <li>Armchair Philosophizing</li>
-              <li>Personal Finance</li>
-              <li>And Playing Video Games</li>
-            </ul>
-          </p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">Projects</h1>
-          <p className="pageContent">
-            Currently lacking the stellar projects resume, but there are some in the works:<br /><br />
-            <ul className="aboutMeList">
-              <li>Fineas</li>
-              <p>Fineas is my first attempt at creating a financial services web application. Taking inspiration by the now decomissioned financial budgeting app Mint, I am hoping to create a budgeting tool that can help anyone track their finances with the help of Machine Learning.</p>
-            </ul>
-          </p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">Work Experience</h1>
-          <p className="pageContent">This is the work experience section. It&#39;ll probably dispaly my resume or something.</p>
-        </div>
-        <div className="page">
-          <h1 className="pageHeader">Contact Info</h1>
-          <p className="pageContent">
-            You can reach me or checkout my other profiles at:<br /><br />
-            <ul className="contactList">
-              <li>
-                <a href="mailto:marcinknara@gmail.com">
-                  <FontAwesomeIcon icon={faEnvelope} /> marcinknara@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/marcinknara" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/marcinknara" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faGithub} /> GitHub
-                </a>
-              </li>
-            </ul>
-          </p>
-        </div>
-      </HTMLFlipBook>
-    );
+  const styles = {
+    card: { background: '#00b3ad', color: 'white', borderRadius: 20, },
+    padding10: { padding: 10 },
+    size200: { height: 400, width: 400, display: 'inline-block', padding: 20 },
   }
 
+  useEffect(() => {
+    if (!isVaraInitialized.current) {
+      isVaraInitialized.current = true;
+      const calculateFontSize = () => {
+        const screenFontSize = window.screen.width < 700 ? 32 : window.screen.width < 1200 ? 56 : 72;
+        setTypewriterFontSize(screenFontSize);
+        return screenFontSize;
+      };
+
+      const fontSize = calculateFontSize();
+
+      const vara = new Vara(
+        "#title",
+        "https://cdn.jsdelivr.net/npm/vara@1.4.0/fonts/Satisfy/SatisfySL.json",
+        [
+          {
+            text: "My name is Marcin Knara",
+            y: 50, // Adjusted the y position to reduce space
+            fromCurrentPosition: { y: false },
+            duration: 3000
+          },
+        ],
+        {
+          strokeWidth: 2,
+          color: "#523c33",
+          fontSize: fontSize,
+          textAlign: "center"
+        }
+      );
+
+      vara.ready(function () {
+        vara.animationEnd(function (i, o) {
+          setIsVaraAnimationComplete(true);
+        });
+      });
+
+      // Add event listener to update font size on resize
+      window.addEventListener('resize', calculateFontSize);
+
+      // Cleanup event listener on component unmount
+      return () => window.removeEventListener('resize', calculateFontSize);
+    }
+  }, []);
+
+  const flipCardStyle = {
+    frontStyle: { background: 'blue', color: 'white', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+    backStyle: { background: 'blue', color: 'white', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  };
+
   return (
-    <main className="main-container">
-      {dimensions.width > 0 && dimensions.height > 0 && <MyBook />}
-      <div className="navigation-buttons">
-        <button onClick={() => goToPage(0)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>Cover</span>
-        </button>
-        <button onClick={() => goToPage(2)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>About Me</span>
-        </button>
-        <button onClick={() => goToPage(3)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>Projects</span>
-        </button>
-        <button onClick={() => goToPage(4)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>Work Experience</span>
-        </button>
-        <button onClick={() => goToPage(5)}>
-          <FontAwesomeIcon icon={faBookmark} />
-          <span>Contact</span>
-        </button>
+    <div id='container'>
+      <div id='section1'>
+        <div id="title"></div>
+        <img src="/MarcinCouchWebsite.png" alt="Description of image" style={{ marginTop: '20px', maxWidth: '80%', height: 'auto' }} />
+        {isVaraAnimationComplete && (
+          <div id="subheader" style={{ fontSize: `${typewriterFontSize / 2}px`, color: '#523c33', marginTop: '90px', position: 'absolute', top: '100px', width: '100%', textAlign: 'center' }}>
+            <Typewriter
+              words={['[Pronounced Mar-chin Ck-nara]', 'Welcome to my site!', 'I dabble in many things.', 'Scroll and take a look around!']}
+              loop={1}
+              cursor
+              cursorStyle='_'
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+          </div>
+        )}
       </div>
-    </main>
+      <div id='section2' className="section">
+        <h1>Projects</h1>
+        <div id='horizontalContainer'>
+          <div style={{ ...styles.size200 }}>
+            <ReactFlipCard
+              containerCss={'resizeBasedOnParent'}
+              flipTrigger={"onClick"}
+              frontStyle={styles.card}
+              backStyle={styles.card}
+              frontComponent={<div style={styles.padding10}>Fineas</div>}
+              backComponent={<><div style={{ ...styles.padding10, overflowWrap: 'break-word', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>Fineas is my first attempt at creating a financial services web application. Taking inspiration from the now decomissioned financial budgeting app Mint, I am hoping to create a budgeting tool that can help anyone track their finances with the help of Machine Learning.
+              </div>
+              <div style={{ ...styles.padding10, overflowWrap: 'break-word', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>Points of Interest:</div></>}
+            />
+          </div>
+          <div style={styles.size200}>
+            <ReactFlipCard
+              containerCss={'resizeBasedOnParent'}
+              flipTrigger={"onClick"}
+              frontStyle={styles.card}
+              backStyle={styles.card}
+              frontComponent={<div style={styles.padding10}>Saige</div>}
+              backComponent={<div style={{ ...styles.padding10, overflowWrap: 'break-word', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>My first time working with a startup!</div>}
+            />
+          </div>
+          {/* <div style={styles.size200}>
+            <ReactFlipCard
+              containerCss={'resizeBasedOnParent'}
+              flipTrigger={"onClick"}
+              frontStyle={styles.card}
+              backStyle={styles.card}
+              frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
+              backComponent={<div style={styles.padding10}>Back!</div>}
+            />
+          </div> */}
+          {/* <div style={styles.size200}>
+            <ReactFlipCard
+              containerCss={'resizeBasedOnParent'}
+              flipTrigger={"onClick"}
+              frontStyle={styles.card}
+              backStyle={styles.card}
+              frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
+              backComponent={<div style={styles.padding10}>Back!</div>}
+            />
+          </div> */}
+        </div>
+      </div>
+      <div id='section3' className="section">
+        {/* <h1>Experience</h1> */}
+        <div id="underConstruction" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' , fontSize: 80}}>
+          <Typewriter
+              words={['Under Construction', '. . .']}
+              loop={0}
+              cursor
+              cursorStyle='_'
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+        </div>
+      </div>
+      {/* <div id='section4' className="section">
+        <h1>About Me</h1>
+      </div>
+      <div id='section5' className="section">
+        <h1>Hobbies</h1>,
+      </div> */}
+    </div>
   );
 }
