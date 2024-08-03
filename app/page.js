@@ -87,15 +87,16 @@ export default function Home() {
       <div id='section2' className="section">
         <h1>Projects</h1>
         <div id='horizontalContainer'>
-          <div style={{...styles.size200}}>
+          <div style={{ ...styles.size200 }}>
             <ReactFlipCard
               containerCss={'resizeBasedOnParent'}
               flipTrigger={"onClick"}
               frontStyle={styles.card}
               backStyle={styles.card}
               frontComponent={<div style={styles.padding10}>Fineas</div>}
-              backComponent={<div style={styles.padding10}>Fineas is my first attempt at creating a financial services web application. Taking inspiration from the now decomissioned financial budgeting app Mint, I am hoping to create a budgeting tool that can help anyone track their finances with the help of Machine Learning.
-              </div>}
+              backComponent={<><div style={{ ...styles.padding10, overflowWrap: 'break-word', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>Fineas is my first attempt at creating a financial services web application. Taking inspiration from the now decomissioned financial budgeting app Mint, I am hoping to create a budgeting tool that can help anyone track their finances with the help of Machine Learning.
+              </div>
+              <div style={{ ...styles.padding10, overflowWrap: 'break-word', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>Points of Interest:</div></>}
             />
           </div>
           <div style={styles.size200}>
@@ -105,10 +106,10 @@ export default function Home() {
               frontStyle={styles.card}
               backStyle={styles.card}
               frontComponent={<div style={styles.padding10}>Saige</div>}
-              backComponent={<div style={styles.padding10}>My first time working with a startup!</div>}
+              backComponent={<div style={{ ...styles.padding10, overflowWrap: 'break-word', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>My first time working with a startup!</div>}
             />
           </div>
-          <div style={styles.size200}>
+          {/* <div style={styles.size200}>
             <ReactFlipCard
               containerCss={'resizeBasedOnParent'}
               flipTrigger={"onClick"}
@@ -117,8 +118,8 @@ export default function Home() {
               frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
               backComponent={<div style={styles.padding10}>Back!</div>}
             />
-          </div>
-          <div style={styles.size200}>
+          </div> */}
+          {/* <div style={styles.size200}>
             <ReactFlipCard
               containerCss={'resizeBasedOnParent'}
               flipTrigger={"onClick"}
@@ -127,18 +128,29 @@ export default function Home() {
               frontComponent={<div style={styles.padding10}>Hover me! I am a resized card</div>}
               backComponent={<div style={styles.padding10}>Back!</div>}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div id='section3' className="section">
-        <h1>Experience</h1>
+        {/* <h1>Experience</h1> */}
+        <div id="underConstruction" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' , fontSize: 80}}>
+          <Typewriter
+              words={['Under Construction', '. . .']}
+              loop={0}
+              cursor
+              cursorStyle='_'
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+        </div>
       </div>
-      <div id='section4' className="section">
+      {/* <div id='section4' className="section">
         <h1>About Me</h1>
       </div>
       <div id='section5' className="section">
-        <h1>Hobbies</h1>
-      </div>
+        <h1>Hobbies</h1>,
+      </div> */}
     </div>
   );
 }
