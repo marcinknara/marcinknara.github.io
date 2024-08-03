@@ -73,7 +73,7 @@ export default function Home() {
         {isVaraAnimationComplete && (
           <div id="subheader" style={{ fontSize: `${typewriterFontSize / 2}px`, color: '#523c33', marginTop: '90px', position: 'absolute', top: '100px', width: '100%', textAlign: 'center' }}>
             <Typewriter
-              words={['[Pronounced Mar-chin Ck-nara]', 'Welcome to my site!', 'I dabble in many things.', 'Scroll and take a look around!']}
+              words={['[Pronounced Mar-chin Ck-nara]', 'Welcome to my site!', 'Scroll and take a look around (work in progress).']}
               loop={1}
               cursor
               cursorStyle='_'
