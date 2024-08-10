@@ -135,7 +135,7 @@ export default function Home() {
         {/* <h1>Experience</h1> */}
         <div id="underConstruction" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' , fontSize: 80}}>
           <Typewriter
-              words={['Under Construction', '🚧 🚧 🚧', 'Nothing to see here (yet)', '🚧 🚧 🚧']}
+              words={['Under Construction', '🚧 🚧 🚧', 'Nothing to see here (yet)', '🚧 🚧 🚧']} //Issue rendering emojis on animation end with typewriter effect
               loop={0}
               cursor
               cursorStyle='_'
