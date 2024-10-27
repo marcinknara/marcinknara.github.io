@@ -111,19 +111,19 @@ function App() {
         <h2>Projects</h2>
         <div className="project-grid">
           <div className="project-card">
-            <img src="saigelogo.png" alt="Saige Project" />
+            <img src={`${process.env.PUBLIC_URL}/images/saigelogo.png`} alt="Saige Project" />
             <h3>Saige</h3>
             <p>This was my first project working for a startup. I was the founding engineer for this mobile application.</p>
-            <a className="view-more-btn">Sorry, no link.</a>
+            <button className="view-more-btn">Sorry, no link.</button>
           </div>
           <div className="project-card">
-            <img src="FINEAS (1).png" alt="Fineas Project" />
+            <img src={`${process.env.PUBLIC_URL}/images/FINEAS (1).png`} alt="Fineas Project" />
             <h3>Fineas</h3>
             <p>This is my current project. It is my attempt at creating a financial dashboard using Plaid to aggregate a user's financial data.</p>
             <a href="https://github.com/marcinknara/fineas" className="view-more-btn">View More</a>
           </div>
           <div className="project-card">
-            <img src="Poster.jpg" alt="Podcast" />
+            <img src={`${process.env.PUBLIC_URL}/images/Poster.jpg`} alt="Podcast" />
             <h3>Let's Start a Dialogue Podcast</h3>
             <p>At the start of the COVID-19 pandemic, I scratched an itch to start my own podcast. I spoke with friends and professors on various topics, and greatly enjoyed these insightful conversations.</p>
             <a href="https://github.com/marcinknara/fineas" className="view-more-btn">View More</a>
