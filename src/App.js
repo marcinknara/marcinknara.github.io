@@ -123,7 +123,7 @@ function App() {
       {isAboutModalOpen && (
         <div className="modal-overlay" onClick={toggleAboutModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>More About Me</h2>
+            <h2 style={{color: 'white'}}>More About Me</h2>
 
             {/* Bio Section */}
             <section>
