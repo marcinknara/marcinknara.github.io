@@ -271,3 +271,12 @@ footer {
 .social-icons a:hover {
   color: #18BC9C; /* Accent color on hover */
 }
+
+.profile-photo {
+  width: 200px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image scales well */
+  margin-bottom: 20px; /* Adds some space below the image */
+  border: 3px solid white; /* Optional: adds a border around the photo */
+}

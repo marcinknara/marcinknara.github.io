@@ -9,6 +9,12 @@ function App() {
   const [typewriterFontSize, setTypewriterFontSize] = useState(48);
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
 
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false); // State for About modal
+
+  const toggleAboutModal = () => {
+    setIsAboutModalOpen(!isAboutModalOpen);
+  };
+
   const calculateFontSize = () => {
     const screenFontSize = window.screen.width < 700 ? 32 : window.screen.width < 1200 ? 56 : 72;
     setTypewriterFontSize(screenFontSize);
@@ -69,7 +75,8 @@ function App() {
           <ul className="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact" onClick={toggleModal}>Contact</a></li> {/* Opens modal on click */}
+            <li><a href="#about" onClick={toggleAboutModal}>About</a></li> {/* About modal link */}
+            <li><a href="#contact" onClick={toggleModal}>Contact</a></li> {/* Contact modal link */}
           </ul>
         </nav>
       </header>
@@ -77,6 +84,12 @@ function App() {
       {/* Hero Section */}
       <section id="home" className="hero-section">
         <div className="hero-content">
+          {/* Profile Photo */}
+          <img
+            src={`${process.env.PUBLIC_URL}/images/MarcinHeadshot.png`}
+            alt="Profile of Marcin Knara"
+            className="profile-photo"
+          />
           <h1 id="myName">{isVaraAnimationComplete && (
             <div style={{ fontSize: `${typewriterFontSize / 2}px`, color: '#F4F4F4', marginTop: '10px' }}>
               <Typewriter
@@ -102,6 +115,37 @@ function App() {
             <p>LinkedIn: <a href="https://linkedin.com/in/marcinknara" target="_blank" rel="noopener noreferrer">linkedin.com/in/marcinknara</a></p>
             <p>GitHub: <a href="https://github.com/marcinknara" target="_blank" rel="noopener noreferrer">github.com/marcinknara</a></p>
             <button className="close-button" onClick={toggleModal}>Close</button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal for About */}
+      {isAboutModalOpen && (
+        <div className="modal-overlay" onClick={toggleAboutModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>More About Me</h2>
+
+            {/* Bio Section */}
+            <section>
+              <h3>Bio</h3>
+              <p>I'm a software engineer with over 3 years of professional experience! My primary work is on the backend, but I've done full stack work for a startup and continue to develop personal projects on the side.</p>
+            </section>
+
+            {/* Hobbies Section */}
+            <section>
+              <h3>Hobbies</h3>
+              <p>Photography, Videography, Video games, Bike riding, Working out</p>
+            </section>
+
+            {/* Books Section */}
+            <section>
+              <h3>Books</h3>
+              <p>Favorites: Dark Matter, Dune series, Hitchhiker's Guide to the Galaxy</p>
+              <p>Currently Reading: Sapiens, Angels & Demons</p>
+              <p>Wants: The Pragmatic Programmer, Mythical Man Month, The Davinci Code (many more on GoodReads)</p>
+            </section>
+
+            <button className="close-button" onClick={toggleAboutModal}>Close</button>
           </div>
         </div>
       )}
