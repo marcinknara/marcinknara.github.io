@@ -114,7 +114,7 @@ header {
   width: 100%; /* Ensures the image takes up the full width of the card */
   max-width: 100%; /* Prevents the image from overflowing the card width */
   height: auto; /* Maintains the aspect ratio */
-  max-height: 300px; /* Adjust as needed, but limits the image's height to avoid excessive size */
+  max-height: 100px; /* Adjust as needed, but limits the image's height to avoid excessive size */
   object-fit: contain; /* Ensures the entire image is visible without cropping */
   border-radius: 8px; /* Optional: Adds rounded corners */
 }
@@ -122,6 +122,8 @@ header {
 .view-more-btn {
   display: inline-block;
   margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   padding: 0.5rem 1rem;
   background-color: var(--primary-color);
   color: white;
@@ -223,7 +225,7 @@ footer {
   background: #ffffffe8;
   padding: 2rem;
   width: 50vw;
-  height: 50vh;
+  height: 60vh;
   border-radius: 8px;
   display: flex;
   flex-direction: column;

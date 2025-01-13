@@ -123,18 +123,18 @@ function App() {
       {isAboutModalOpen && (
         <div className="modal-overlay" onClick={toggleAboutModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2 style={{ color: 'white' }}>More About Me</h2>
+            <h2 style={{ color: 'black' }}>More About Me</h2>
 
             {/* Bio Section */}
             <section>
               <h3>Bio</h3>
-              <p>I'm a software engineer with over 3 years of professional experience! My primary work is on the backend, but I've done full stack work for a startup and continue to develop personal projects on the side.</p>
+              <p>I'm a software engineer that spends his day-to-day on the backend. I've done full stack work for the startup Saige and continue to develop personal projects on the side. I have a keen interest in developing software for disadvantaged users, and hope I can make a difference in their lives.</p>
             </section>
 
             {/* Hobbies Section */}
             <section>
               <h3>Hobbies</h3>
-              <p>Photography, Videography, Video games, Bike riding, Working out</p>
+              <p>Soccer, photography, video games, biking, Working out</p>
             </section>
 
             {/* Books Section */}
@@ -142,7 +142,7 @@ function App() {
               <h3>Books</h3>
               <p>Favorites: Dark Matter, Dune series, Hitchhiker's Guide to the Galaxy</p>
               <p>Currently Reading:  Spring Start Here, Sapiens, Angels & Demons</p>
-              <p>Wants: The Pragmatic Programmer, Mythical Man Month, The Davinci Code (many more on GoodReads)</p>
+              <p>Wants: The Pragmatic Programmer, Mythical Man Month, The Davinci Code (many more on my GoodReads)</p>
             </section>
 
             <button className="close-button" onClick={toggleAboutModal}>Close</button>
@@ -158,19 +158,26 @@ function App() {
             <img src={`${process.env.PUBLIC_URL}/images/saigelogo.png`} alt="Saige Project" />
             <h3>Saige</h3>
             <p>This was my first project working for a startup. I was the founding engineer for this mobile application.</p>
-            <button className="view-more-btn">Sorry, no link.</button>
+            <a className="view-more-btn">Sorry, no link.</a>
+          </div>
+          <div className="project-card">
+            <img src={`${process.env.PUBLIC_URL}/images/CaseManager_icon.ico`} alt="EMR" />
+            <h3>Case Manager Minimal EMR</h3>
+            <p>A project to create a minimal Electronic Medical Record software that allows healthcare workers in rehab facilities to easily track and visualize patient qualitative and quantitative survey data.</p>
+            <a href="https://github.com/marcinknara/minimal-emr" className="view-more-btn">View More</a>
+            <a href="https://github.com/marcinknara/minimal-emr/releases/download/v1.0.31/CaseManager_v1.0.31_windows.rar" className="view-more-btn">Download v1.0.31</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/FINEAS (1).png`} alt="Fineas Project" />
             <h3>Fineas</h3>
-            <p>This is my current project. It is my attempt at creating a financial dashboard using Plaid to aggregate a user's financial data.</p>
+            <p>A financial aggregator project. My attempt at creating a financial dashboard using Plaid to aggregate a user's financial data.</p>
             <a href="https://github.com/marcinknara/fineas" className="view-more-btn">View More</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/Poster.jpg`} alt="Podcast" />
             <h3>Let's Start a Dialogue Podcast</h3>
             <p>At the start of the COVID-19 pandemic, I scratched an itch to start my own podcast. I spoke with friends and professors on various topics, and greatly enjoyed these insightful conversations.</p>
-            <a href="https://github.com/marcinknara/fineas" className="view-more-btn">View More</a>
+            <a href="https://open.spotify.com/show/62RTNRNsTC3oS7Pr8PB8dz?si=a0e50cf653684065" className="view-more-btn">Listen on Spotify</a>
           </div>
         </div>
       </section>
@@ -191,7 +198,7 @@ function App() {
             </svg>
           </a>
         </div>
-        <p>&copy; 2024 Marcin Knara</p>
+        <p>&copy; 2025 Marcin Knara</p>
       </footer>
     </div>
   );
