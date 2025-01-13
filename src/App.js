@@ -158,7 +158,7 @@ function App() {
             <img src={`${process.env.PUBLIC_URL}/images/saigelogo.png`} alt="Saige Project" />
             <h3>Saige</h3>
             <p>This was my first project working for a startup. I was the founding engineer for this mobile application.</p>
-            <a className="view-more-btn">Sorry, no link.</a>
+            <a href="" className="view-more-btn">Sorry, no link.</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/CaseManager_icon.ico`} alt="EMR" />
