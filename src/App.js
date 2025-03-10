@@ -165,13 +165,14 @@ function App() {
             <h3>Case Manager Minimal EMR</h3>
             <p>A project to create a minimal Electronic Medical Record software that allows healthcare workers in rehab facilities to easily track and visualize patient qualitative and quantitative survey data.</p>
             <a href="https://github.com/marcinknara/minimal-emr" className="view-more-btn">View More</a>
-            <a href="https://github.com/marcinknara/minimal-emr/releases/download/v1.0.31/CaseManager_v1.0.31_windows.rar" className="view-more-btn">Download v1.0.31</a>
+            <a href="https://github.com/marcinknara/minimal-emr/releases/" className="view-more-btn">Downloads</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/FINEAS (1).png`} alt="Fineas Project" />
             <h3>Fineas</h3>
-            <p>A financial aggregator project. My attempt at creating a financial dashboard using Plaid to aggregate a user's financial data.</p>
-            <a href="https://github.com/marcinknara/fineas" className="view-more-btn">View More</a>
+            <p>Architected and deployed a full-stack financial analytics web app using FastAPI, React, and PostgreSQL,
+              focusing on investment expense analysis and portfolio management.</p>
+            <a href="www.fineas.app" className="view-more-btn">Go to Fineas.app</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/Poster.jpg`} alt="Podcast" />
