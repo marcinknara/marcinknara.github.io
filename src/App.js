@@ -158,27 +158,27 @@ function App() {
             <img src={`${process.env.PUBLIC_URL}/images/saigelogo.png`} alt="Saige Project" />
             <h3>Saige</h3>
             <p>This was my first project working for a startup. I was the founding engineer for this mobile application.</p>
-            <a href="https://www.saigesource.com/" className="view-more-btn">View More</a>
+            <a href="https://www.saigesource.com/" className="view-more-btn" target="_blank" rel="noopener noreferrer">View More</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/CaseManager_icon.ico`} alt="EMR" />
             <h3>Case Manager Minimal EMR</h3>
             <p>A project to create a minimal Electronic Medical Record software that allows healthcare workers in rehab facilities to easily track and visualize patient qualitative and quantitative survey data.</p>
-            <a href="https://github.com/marcinknara/minimal-emr" className="view-more-btn">View More</a>
-            <a href="https://github.com/marcinknara/minimal-emr/releases/" className="view-more-btn">Downloads</a>
+            <a href="https://github.com/marcinknara/minimal-emr" className="view-more-btn" target="_blank" rel="noopener noreferrer">View More</a>
+            <a href="https://github.com/marcinknara/minimal-emr/releases/" className="view-more-btn" target="_blank" rel="noopener noreferrer">Downloads</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/FINEAS (1).png`} alt="Fineas Project" />
             <h3>Fineas</h3>
             <p>Architected and deployed a full-stack financial analytics web app using FastAPI, React, and PostgreSQL,
               focusing on investment expense analysis and portfolio management.</p>
-            <a href="https://www.fineas.app" className="view-more-btn">Go to Fineas.app</a>
+            <a href="https://www.fineas.app" className="view-more-btn" target="_blank" rel="noopener noreferrer">Go to Fineas.app</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/Poster.jpg`} alt="Podcast" />
             <h3>Let's Start a Dialogue Podcast</h3>
             <p>At the start of the COVID-19 pandemic, I scratched an itch to start my own podcast. I spoke with friends and professors on various topics, and greatly enjoyed these insightful conversations.</p>
-            <a href="https://open.spotify.com/show/62RTNRNsTC3oS7Pr8PB8dz?si=a0e50cf653684065" className="view-more-btn">Listen on Spotify</a>
+            <a href="https://open.spotify.com/show/62RTNRNsTC3oS7Pr8PB8dz?si=a0e50cf653684065" className="view-more-btn" target="_blank" rel="noopener noreferrer">Listen on Spotify</a>
           </div>
         </div>
       </section>
