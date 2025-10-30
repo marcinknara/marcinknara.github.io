@@ -172,7 +172,7 @@ function App() {
             <h3>Fineas</h3>
             <p>Architected and deployed a full-stack financial analytics web app using FastAPI, React, and PostgreSQL,
               focusing on investment expense analysis and portfolio management.</p>
-            <a href="www.fineas.app" className="view-more-btn">Go to Fineas.app</a>
+            <a href="https://www.fineas.app" className="view-more-btn">Go to Fineas.app</a>
           </div>
           <div className="project-card">
             <img src={`${process.env.PUBLIC_URL}/images/Poster.jpg`} alt="Podcast" />
